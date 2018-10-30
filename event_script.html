@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js事件处理程序 - html事件处理程序</title>
+</head>
+<body>
+	<button onclick="alert('hello world!');">Click Me</button>
+	<button onclick="sayHello()">Click Me Too</button>
+    
+    <form>
+    	<input type="text" name="username" value="jackie">
+    	<input type="button" name="btn1" onclick="alert(username.name)" value="Click Me Tooo">
+    </form>
+
+	<script type="text/javascript">
+		function sayHello(){
+			alert("Hello World!");
+		}
+	</script>
+
+	<button id="btn_DOM0">Click04(DOM_event handler)</button>
+
+	<script type="text/javascript">
+	var btnDom0 = document.getElementById('btnDom0');
+	btnDom0.onClick = function(){
+		alert("this.id");
+	}
+	btnDom0.onclick = null;
+    </script>
+
+    <div id="myDiv">
+    <button id="myBtn"></button>
+    </div>
+
+    <script type="text/javascript">
+    var myBtn = document.getElementById("myBtn");
+    myBtn.addEventListener("click",function(){
+    	alert(this.id);
+    },false);
+    myBtn.addEventListener("click",sayHi, false);
+    function(sayHi){
+    	alert("hello!");
+    },false);
+    myBtn.removeEventListener("click",sayHi, false);
+
+    var myDiv = document.getElementById("myDiv");
+    myDiv.addEventListener("click",sayHiDiv, false);
+    myDiv.addEventListener("click",sayHiDiv, false);
+    function sayHiDiv(){
+    	alert("hellow DIV");
+    }
+    </script>
+
+    <div id="myDiv2">
+       <button id="myBtn2">IE-Click</button>
+    </div>
+    <script type="text/javascript">
+       var myBtn2 = document.getElementById("myBtn2");
+       myBtn2.attachEvent("onclick",function(){
+          alert(alert(this==window););
+       });
+
+       myBtn2.detachEvent("onclick",);
+    </script>
+    <button id="myBtn3">CrossBrowser</button>
+    <script type="text/javascript">
+    var myBtn3 = document.getElementById("myBtn3");
+    function addHandler(){
+    	if(myBtn3.addEventListener){ 
+    	   myBtn3.addEventListener("click",clickMe,false); //事件冒泡
+        }else if(myBtn3.attachEvent){  //IE 事件处理程序: IE
+           myBtn3.attachEvent("onclick",clickMe);
+        }else{
+           myBtn3.onclick=clickMe; //DOM 0级事件处理程序:支持所有浏览器
+        }
+    }
+    function clickMe(){
+       alert("you clicked me!");
+    }
+    function removeHandler(){
+    	if(myBtn3.removeEventListener){
+    		myBtn3.removeEventListener("click",clickMe,false);
+    	}else if(myBtn3.detachEvent){
+    		myBtn3.detachEvent("onclick",clickMe);
+    	}else{
+    		myBtn3.onclick=null;   
+    	}
+    }
+
+    addHandler();
+    </script>
+</body>
+</html>

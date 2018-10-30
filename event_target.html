@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Js EventTarget</title>
+</head>
+<body>
+	<div id="myDiv">
+	<button onclick="alert(event.target)">Click</button>
+    </div>
+
+	<a href="www.baidu.com" id="myLink">Baidu</a>
+	<script type="text/javascript">
+		var btn1 = document.getElementById('btn1');
+		btn1.onclick=function(event){
+			alert(event.type);
+		}
+		btn1.addEventListener("click",function(){
+           alert(event.target.id);
+           event.stopPropagation();
+		},false);
+
+		var myLink = document.getElementById("myLink");
+		myLink.onclick=function(event){
+			alert("clicked");
+			event.preventDefault();  
+		}
+
+		//跨浏览器的综合方案
+		function getEvent(event){
+			return event ? event :window.event;
+		}
+		//获取目标对象
+		function getTarget(event){
+			return event.target || event.srcElement;
+		}
+		//获取type ==>event.type
+		//阻止默认行为
+		function preventDefault(event){
+			if(event.preventDefault){
+				event.preventDefault();
+			}else{
+				event.returnValue=false;
+			}
+		}
+
+		//阻止冒泡事件
+		function stopPropagation(event){
+			if(event.stopPropagation){
+               event.stopPropagation();
+			}else{
+				event.cancelBubble=true;
+			}
+		}
+
+		var btn1 = document.getElementById('btn1');
+		btn.onclick=function(event){
+			var event1 = 
+			alert (getTarget(event1));  //事件类型
+		}
+	</script>
+</body>
+</html>

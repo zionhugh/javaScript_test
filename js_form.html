@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS_FORM</title>
+</head>
+<body>
+	<form action="www.google.com" id="myForm">
+		<input type="text" name="word">
+		<input type="button" value="submit" onclick="toSubmit()">
+		<input type="button" value="reset" onclick="toReset()">
+	</form>
+	<script type="text/javascript">
+		function toSubmit(){
+			document.getElementById('myForm').submit();
+		}
+		function toReset(){
+			document.getElementById('myForm').reset();
+		}
+	</script>
+</body>
+</html>

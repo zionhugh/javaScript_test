@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Js EventType</title>
+</head>
+<body onload="loadPage()" onunload="unloadPage()" onresize="resizePage()" 
+      onscroll="onscroll()">
+
+   <img src="https://www.jikexueyuan.com/" onload="loadImgs()">
+   <input type="text" name="textinput" onselect="getSelect(this)"
+          onfocus="focusText(this)" onblur="blurText(this)">
+
+   <div id="div1" ondbclick="dbClickDiv()" onmousedown="changeBg(this, 'yellow')"
+        onmouseup="changeBg(this,'orange')">
+   You dbClicked Me!
+   </div>
+   
+   <button onmouseover="change(this)" onmouseout="normal(this)">Button</button>
+   <input type="text" name="keydownInput" onkeydown="keydwonHandler()"
+          onkeypress="keypressHandler()" onkeyup="keypressup()"
+          onkeyup="keyCodeTest(event)">
+
+   <script type="text/javascript">
+      var img1 = document.getElementById('img1');
+      img1.onload=loadImags;
+      function keyCodeTest(event){
+         console.log(event.keyCode);
+         if(event.keyCode==13){
+            alert("submit forms");
+         }
+      }
+      function keypressup(){
+      	alert("keypressed up");
+      }
+      function keypressHandler(){
+      	alert("onkeydown");
+      }
+      function keydwonHandler(){
+      	console.log("onmousedown");
+      }
+      function changeBg(obj,cl){
+      	obj.style.background=cl;
+      }
+      function change(obj){
+      	obj.style.border="2px solid green";
+      }
+      function normal(obj){
+      	obj.style.border="0px";
+      }
+      function dbCLickDiv(obj){
+      	obj.style.background="green"
+      }
+      function focusText(obj){
+         obj.style.background="green";
+      }
+      function blurText(obj){
+         obj.style.background="red";
+         obj.value=obj.value.toUpperCase()
+      }
+      function onscroll(){
+      	alert("Page had been scrolled");
+      }
+      function resizePage(){
+      	alert("Page already been resized");
+      }
+      function loadPage(){
+      	alert("Loading Completed");
+      }
+      function loadImgs(){
+        alert("IMG Loading Completed");
+      }
+      function unloadPage(){
+      	//Destory Sources Completed
+      	console.log("Unload Completed");
+      }
+   </script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Form_Submit_Document</title>
+	<style type="text/css">
+	   .main{
+	      width:800px;
+	      padding:20px 100px;
+	      border:1px solid #f2f2f2;
+	      marging:0 auto;
+	   }
+	   input{
+	   	  width:300px;
+	   	  height:30px;
+	   	  font-size:14px;
+	   	  padding:3px 5px;
+	   }
+	   input[type="checkbox"]{
+	   	  width:15px;
+	   	  height:15px;
+	   	  font-size:14px;
+	   	  padding:3px 5px;
+	   }
+	   label{
+	      width:150px;
+	      display:inline-block;
+	   }
+	   div{
+	   	  padding: 5px;
+	   }
+	   .submit{
+	   	  width:472px;
+	   	  height:32px;
+	   	  font-size:14px;
+	   	  padding:3px 10px;
+	   }
+	   span{
+	      color:red;
+	   }
+	   em{
+	   	  color:green;
+	   }
+	</style>
+</head>
+<body>
+   <form action="" id="myForm">
+
+   <h1>ArtGalaxy Register</h1>
+
+   <div>
+   <label for="username">*Username:</label>
+   <input type="text" name="username" id="username">
+   <span id="userTips"></span>
+   </div>
+
+   <div>
+   <label for="password">*SetPassword:</label>
+   <input type="password" name="password" id="password">
+   <span id="pwd1Tips"></span>
+   </div>
+
+   <div>
+   <label for="password">*VarifyPassword:</label>
+   <input type="password" name="password" id="password">
+   <span id="pwd2Tips"></span>
+   </div>
+
+   <div>
+   <label for="company">*Company Name:</label>
+   <input type="text" name="company" id="company">
+   <span id="userTips"></span>
+   </div>
+   
+   <div>
+   <label for="address">*Company Address:</label>
+   <select id="address" name="address">
+      <option value="">Choose City</option>
+      <option value="BJ">Beijing</option>
+   </select>
+   <select id="district" name="district">
+      <option value="CP">ChangPing</option>
+      <option value="HD">HaiDian</option>
+      <option value="CY">ChaoYang</option>
+   </select>
+   <span id="addressTips"></span>
+   </div>
+
+   <div>
+   <label for="usage">*Type Of Purchase:</label>
+   <input type="checkbox" name="usage">IT Facility
+   <input type="checkbox" name="usage">Home Appliance
+   <input type="checkbox" name="usage">Gift
+   <input type="checkbox" name="usage">Office Supplies
+   <input type="checkbox" name="usage">Government Procurement
+   <span id="usageTips"></span>
+   </div>
+   <div>
+   <label for="phone">*Referrer Phone:</label>
+   <input type="text" name=phone" id="phone">
+   <span id="phoneTips"></span>
+   </div>
+   </form>
+
+	<script type="text/javascript">
+	  function register(){
+	    var username= document.getElementById('username').value;
+        
+        //username check
+	    if(/^[A-Za-z0-9_\\-\\4e00-\\u9fa5l]{4.20}$/.test(username)){  //4到20个字符，支持_和下划线
+           document.getElementById("userTips").innerHTML="<em>legal username</em>";
+	    }else{
+	       document.getElementById("userTips").innerHTML="4-20 character, Chinese, Letter, Number or underline";
+	    }
+        
+        //password check
+        var password = document.getElementById('password').value;
+	    if(/^.*[A-Za-z0-9_\\w_-]{4.20}.*$/.test(password)){  //密码验证
+           document.getElementById("pwd1Tips").innerHTML="<em>legal password</em>";
+	    }else{
+	       document.getElementById("pwd1Tips").innerHTML="4-20 character, Chinese, Letter, Number or underline";
+	    }
+	    var password2=document.getElementById('password2').value;
+	    if(password == password2)){  //密码匹配验证
+           document.getElementById("pwd2Tips").innerHTML="<em>legal password</em>";
+	    }else{
+	       document.getElementById("pwd2Tips").innerHTML="Passwords do not match";
+	       return;
+	    }
+
+	    //company check
+        var company = document.getElementById('company').value;
+	    if(!isnull(company)){  //公司验证
+           document.getElementById("userTips").innerHTML="<em>legal company name</em>";
+	    }else{
+	       document.getElementById("userTips").innerHTML="company name cannot be empty";
+	    }
+
+	    //address check
+	    var address = document.getElementById('address').value;
+	    if(!isnull(address)){  //地址验证
+           document.getElementById("addressTips").innerHTML="<em>legal company name</em>";
+	    }else{
+	       document.getElementById("addressTips").innerHTML="address name cannot be empty";
+	    }
+
+	    //Usage
+	    var usage = document.getElementsByName('usage').value;
+	    if(checkCheckBox()){  //地址验证
+           document.getElementById("usageTips").innerHTML="<em>legal company name</em>";
+	    }else{
+	       document.getElementById("usageTips").innerHTML="please make a choice";
+	    }
+
+	    //Phone
+	    var phone = document.getElementById('phone').value;
+	    if(/^0?(13|15|17|18|14)[0-9]{9}$/.test(phone)){  //手机验证
+           document.getElementById("phoneTips").innerHTML="<em>legal company name</em>";
+	    }else{
+	       document.getElementById("phoneTips").innerHTML="wrong phone number";
+	    }
+        
+        if(confirm("please make sure all info is correct")){   
+	       document.getElementById("myForm").submit;
+	    }
+	    
+	  }
+
+      function checkCheckBox(){
+      	for(var i in usage){
+      	   if(usage[i].checked==true){
+              return true;
+      	   }
+      	}
+      	return false;
+      }
+
+	  function isnull(objValue){
+	  	return(null == objValue || "" == objValue);
+	  }
+	</script>
+	
+</body>
+</html>

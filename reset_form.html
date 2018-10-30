@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>重置表单示例</title>
+<script type="text/javascript">
+function onResetButtonClick() {
+￼  var loginForm = document.getElementById('loginForm');
+  loginForm.reset();
+}
+</script>
+</head>
+<body>
+<form id="loginForm" action="/login.php">
+Username:<input type="text" name="username">
+Password:<input type="password" name="password">
+<input type="button" value="Reset" onclick="onResetButtonClick()">
+</form>
+</body>
+</html>
